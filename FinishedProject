@@ -1,0 +1,88 @@
+import sys
+
+#hashtags for code comments
+#Zackary Barnett
+
+#CourseID: IT 140
+
+#6-21-2020
+
+#The objective of this code is to create a system in which a user can make deposits and withdrawals from their account, as well as check their balance.
+
+#Lower camelCase format used for coding.
+
+#code using variables "userContinue" and "userIncorrectEntry" are additional code not required in the assignment. These display a more advanced understanding of conditional statements.
+#Some "Thank you" messages have also been added to the code to demonstrate an understanding of Python scripting.
+
+#My Assignment:
+
+#account balance
+accountBalance = float(500.25)
+
+# () used to call function. Without parenthesis we would be calling the object, rather than a function. The () are empty because we are not calling parameters.
+def balance(): #we define our functions (balance, deposit, and withdraw) using the def function
+    print("Your current balance:\n %.2f" % accountBalance) # % is a placeholder for accountBalance
+
+#an example of the scope is from line 28 to line 32. That is one "scope."
+#our functions defined in the scope below do 3 key things. They request input for deposit amount, calculate the new balance based off of that input, and print the results from the function that was called.
+
+def deposit():
+    depositAmount = float(input("How much would you like to deposit today?\n"))   #float the requested input for deposit amount to get decimal places
+    balance = accountBalance + depositAmount #for the new balance we add the current balance to the deposit amount
+    print("Deposit was $%.2f, current balance is $%.2f" % (depositAmount, balance)) # placeholders (%) are in order. 1st % is depositAmount, 2nd % is balance.
+    print("Thank you for banking with us") #added print command not required for assignment
+
+#In a scope that has a conditional statement, the first true statement will cause the code to execute and bypass the rest of the scope. Python will then start reading the next scope after your conditional statement.
+#for withdraw we are doing the same 3 things as above. However, we have created a conditional statement to prevent withdrawals that are greater than the current balance.
+def withdraw() :
+    withdrawAmount = float(input("How much would you like to withdraw today?\n"))       #float the withdraw amount requested via user input and assign it to the variable 'withdrawAmount'
+    if withdrawAmount > accountBalance :    #creat 'if' condition to prevent withdraw if the withdrawal is greater than accountBalance. Rather than allowing withdrawal, we print an error message.
+        print("$%.2f is greater than your account balance of $%.2f" % (withdrawAmount, accountBalance))       #print to explain that the withdrawal was declined.
+        userSelection = input("Please make another selection or press Q to quit.\n")      #Code not part of assignment.
+
+        if userSelection == "D":
+            deposit()
+        elif userSelection == "W":
+            withdraw()
+        elif userSelection == "Q":
+            print("Thank you for banking with us.")
+
+    else:        #You could use elif but you would need need to specify "elif withdrawAmount <= accountBalance : " (same format as the if statement)
+        balance = accountBalance - withdrawAmount       #if withdrawAmount is not greater than accountBalance it resorts to ('else') allowing the withdrawal and printing the new balance.
+        print("Withdrawal amount was $%.2f, current balance is $%.2f" % (withdrawAmount, balance))
+        print("Thank you for banking with us") #added print command not required for assignment
+
+#"else" will ALWAYS be true when "if" and "elif" statements are false. else causes the conditional statement to execute a call as a last resort when "if" and "elif" are false.
+#you can create a conditional statement that does not have to execute code by not using "else." When "if" and "elif" are false, it simply goes on to the next scope of code.
+
+#The next scope of code has to be done after you have defined your functions. If you place it above your defined functions, it won't recognize the function because Python has not read/registered/analyzed them yet.
+
+userChoice = input("What would you like to do?\n") #request user input using conditional statement for defined functions.
+if userChoice == "D":       # == means "is equal to." If userChoice is equal to D, we call for the deposit function.
+    deposit()
+elif userChoice == "W":     #If userChoice is equal to W, we call for the withdrawal ('withdraw') function.
+    withdraw()
+elif userChoice == "B":     #If userChoice is equal to B, we call for the balance function.
+    balance()
+    userContinue = input("Please make another selection or press Q to quit.\n")     #not part of the initial assignment. Added demonstration of conditional statements.
+    if userContinue == "D":
+        deposit()
+    elif userContinue == "W":
+        withdraw()
+    elif userContinue == "Q":
+        print("Thank you for banking with us.")
+
+elif userChoice == "Q":      #If userChoice is equal to Q, we print a thank you message.
+    print("Thank you for banking with us.")
+else:       #else statement not required for assignment. Displays a higher understanding of conditional statements and closes off dead ends in the current script.
+    userIncorrectEntry = input("Incorrect entry. Please make another selection or press Q to quit.\n")
+    if userIncorrectEntry == "D":
+        deposit()
+    elif userIncorrectEntry == "W":
+        withdraw()
+    elif userIncorrectEntry == "Q":
+        print("Thank you for banking with us.")
+
+#Sources used for learning:
+#https://www.youtube.com/watch?v=La1Q1lUelU0 (SNHU provided learning video)
+#https://www.youtube.com/watch?v=Ty-CqfXoVQA (James Cross)
