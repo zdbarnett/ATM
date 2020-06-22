@@ -1,0 +1,59 @@
+import sys
+
+accountBalance = float(500.25)
+
+def balance(): 
+    print("Your current balance:\n %.2f" % accountBalance)
+
+def deposit():
+    depositAmount = float(input("How much would you like to deposit today?\n")) 
+    balance = accountBalance + depositAmount 
+    print("Deposit was $%.2f, current balance is $%.2f" % (depositAmount, balance)) 
+    print("Thank you for banking with us") 
+
+def withdraw():
+    withdrawAmount = float(input("How much would you like to withdraw today?\n")) 
+    if withdrawAmount > accountBalance : 
+        print("$%.2f is greater than your account balance of $%.2f" % (withdrawAmount, accountBalance)) .
+        userSelection = input("Please make another selection or press Q to quit.\n") 
+        if userSelection == "D":
+            deposit()
+        elif userSelection == "W":
+            withdraw()
+        elif userSelection == "Q":
+            print("Thank you for banking with us.")
+    else:  
+        balance = accountBalance - withdrawAmount 
+        print("Withdrawal amount was $%.2f, current balance is $%.2f" % (withdrawAmount, balance))
+        print("Thank you for banking with us") 
+
+userChoice = input("What would you like to do?\n") 
+if userChoice == "D": 
+    deposit()
+elif userChoice == "W": 
+    withdraw()
+elif userChoice == "B": 
+    balance()
+    userContinue = input("Please make another selection or press Q to quit.\n") 
+    if userContinue == "D":
+        deposit()
+    elif userContinue == "W":
+        withdraw()
+    elif userContinue == "Q":
+        print("Thank you for banking with us.")
+
+elif userChoice == "Q": 
+    print("Thank you for banking with us.")
+else: 
+    userIncorrectEntry = input("Incorrect entry. Please make another selection or press Q to quit.\n")
+    if userIncorrectEntry == "D" :
+        deposit()
+    elif userIncorrectEntry == "W":
+        withdraw()
+    elif userIncorrectEntry == "Q":
+        print("Thank you for banking with us.")
+
+
+#Sources used for learning:
+#https://www.youtube.com/watch?v=La1Q1lUelU0 (SNHU provided learning video)
+#https://www.youtube.com/watch?v=Ty-CqfXoVQA (James Cross)
