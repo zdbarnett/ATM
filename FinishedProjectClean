@@ -3,7 +3,7 @@ import sys
 accountBalance = float(500.25)
 
 def balance(): 
-    print("Your current balance:\n %.2f" % accountBalance)
+    print("Your current balance:\n $%.2f" % accountBalance)
 
 def deposit():
     depositAmount = float(input("How much would you like to deposit today?\n")) 
@@ -14,7 +14,7 @@ def deposit():
 def withdraw():
     withdrawAmount = float(input("How much would you like to withdraw today?\n")) 
     if withdrawAmount > accountBalance : 
-        print("$%.2f is greater than your account balance of $%.2f" % (withdrawAmount, accountBalance)) .
+        print("$%.2f is greater than your account balance of $%.2f" % (withdrawAmount, accountBalance)) 
         userSelection = input("Please make another selection or press Q to quit.\n") 
         if userSelection == "D":
             deposit()
